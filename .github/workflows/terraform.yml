@@ -32,15 +32,15 @@ jobs:
       id: validate
       run: terraform validate -no-color
 
-    # In a real environment, you'd add Azure credentials here to run `terraform plan`
-    # - name: Azure Login
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    # - name: Terraform Plan
-    #   id: plan
-    #   run: terraform plan -no-color
-    #   env:
-    #     TF_VAR_database_admin_password: "dummy"
-    #     TF_VAR_jwt_secret: "dummy"
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color
+      env:
+        TF_VAR_database_admin_password: ${{ secrets.DB_PASSWORD }}
+        TF_VAR_jwt_secret: ${{ secrets.JWT_SECRET }}
+

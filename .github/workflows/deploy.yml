@@ -21,16 +21,16 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
 
-    # - name: Azure Login
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # - name: Terraform Init
-    #   run: terraform init
+    - name: Terraform Init
+      run: terraform init
     
-    # - name: Terraform Apply
-    #   run: terraform apply -auto-approve
-    #   env:
-    #     TF_VAR_database_admin_password: ${{ secrets.DB_PASSWORD }}
-    #     TF_VAR_jwt_secret: ${{ secrets.JWT_SECRET }}
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      env:
+        TF_VAR_database_admin_password: ${{ secrets.DB_PASSWORD }}
+        TF_VAR_jwt_secret: ${{ secrets.JWT_SECRET }}
