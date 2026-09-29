@@ -1,8 +1,7 @@
 name: 'Infrastructure Deploy'
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   terraform-apply:
